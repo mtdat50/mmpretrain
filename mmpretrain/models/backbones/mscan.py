@@ -1473,8 +1473,7 @@ class MSCANPretrain(BaseModule):
                 x = blk(x, H, W)
             x = norm(x)
             x = x.reshape(B, H, W, -1).permute(0, 3, 1, 2).contiguous()
-        #     outs.append(x)
-        #
-        # return outs
-        return x
+            outs.append(x)
+
+        return outs
 
