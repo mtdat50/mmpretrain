@@ -6,15 +6,6 @@ from mmengine.fileio import list_dir_or_file
 from mmpretrain.datasets import CustomDataset
 from mmpretrain.registry import DATASETS
 
-KaggleImageNet(
-    "/kaggle/input/competitions/imagenet-object-localization-challenge",
-    "train"
-)
-KaggleImageNet(
-    "/kaggle/input/competitions/imagenet-object-localization-challenge",
-    "val"
-)
-
 @DATASETS.register_module()
 class KaggleImageNet(CustomDataset):
     """ImageNet-1K Kaggle CLS-LOC dataset.
@@ -206,3 +197,13 @@ class KaggleImageNet(CustomDataset):
             f"Split: {self.split}",
             f"Classes: {len(self.synsets)}",
         ]
+
+
+KaggleImageNet(
+    "/kaggle/input/competitions/imagenet-object-localization-challenge",
+    "train"
+)
+KaggleImageNet(
+    "/kaggle/input/competitions/imagenet-object-localization-challenge",
+    "val"
+)
