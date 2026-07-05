@@ -1340,7 +1340,7 @@ class OverlapPatchEmbed(BaseModule):
 
 
 @MODELS.register_module()
-class MSCAN(BaseModule):
+class MSCANPretrain(BaseModule):
     """SegNeXt Multi-Scale Convolutional Attention Network (MCSAN) backbone.
 
     This backbone is the implementation of `SegNeXt: Rethinking

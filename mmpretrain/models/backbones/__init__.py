@@ -26,7 +26,7 @@ from .mobilenet_v3 import MobileNetV3
 from .mobileone import MobileOne
 from .mobilevit import MobileViT
 from .mvit import MViT
-from .mscan import MSCAN
+from .mscan import MSCANPretrain
 from .poolformer import PoolFormer
 from .regnet import RegNet
 from .replknet import RepLKNet
@@ -107,7 +107,7 @@ __all__ = [
     'VAN',
     'InceptionV3',
     'MobileOne',
-    'MSCAN',
+    'MSCANPretrain',
     'EfficientFormer',
     'SwinTransformerV2',
     'MViT',

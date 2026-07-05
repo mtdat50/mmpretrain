@@ -10,7 +10,7 @@ model = dict(
     type='ImageClassifier',
     pretrained=None,
     backbone=dict(
-        type='MSCAN',
+        type='MSCANPretrain',
         # init_cfg=dict(type='Pretrained', checkpoint=checkpoint_file),
         embed_dims=[32, 64, 160, 256],
         mlp_ratios=[8, 8, 4, 4],
