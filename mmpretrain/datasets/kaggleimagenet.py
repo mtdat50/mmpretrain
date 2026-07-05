@@ -125,8 +125,38 @@ class KaggleImageNet(CustomDataset):
 
     def _load_train(self):
         train_root = os.path.join(self.data_root, "ILSVRC/Data/CLS-LOC/train")
+        csv_file = os.path.join(self.data_root, "LOC_train_solution.csv")
 
         data_list = []
+        with open(csv_file, newline="") as f:
+            reader = csv.DictReader(f)
+
+            for row in reader:
+                image = row["ImageId"] + ".JPEG"
+                prediction = row["PredictionString"]
+
+                if not prediction:
+                    continue
+
+                # PredictionString:
+                #
+                # n01440764 xmin ymin xmax ymax
+                # n01443537 xmin ymin xmax ymax
+                #
+                # Use the first object as the classification label.
+
+                synset = prediction.split()[0]
+                label = self.synset_to_idx[synset]
+                img_path = os.path.join(train_root, synset, image)
+                data_list.append(
+                    dict(
+                        img_path=img_path,
+                        gt_label=label,
+                    )
+                )
+            print(data_list[:10])
+
+        return data_list
 
         for synset in self.synsets:
             print(f"=== Loading {synset} ...")
@@ -158,21 +188,15 @@ class KaggleImageNet(CustomDataset):
     ####################################################################
 
     def _load_val(self):
-
         csv_path = os.path.join(self.data_root, "LOC_val_solution.csv")
-
         val_root = os.path.join(self.data_root, "ILSVRC/Data/CLS-LOC/val")
 
         data_list = []
-
         with open(csv_path, newline="") as f:
-
             reader = csv.DictReader(f)
 
             for row in reader:
-
                 image = row["ImageId"] + ".JPEG"
-
                 prediction = row["PredictionString"]
 
                 if not prediction:
@@ -198,7 +222,7 @@ class KaggleImageNet(CustomDataset):
                         gt_label=self.synset_to_idx[synset],
                     )
                 )
-        print(data_list)
+        print(data_list[:10])
 
         return data_list
 
