@@ -32,7 +32,7 @@ model = dict(
 )
 
 # dataset settings
-train_dataloader = dict(batch_size=32)
+train_dataloader = dict(batch_size=64)
 
 # optimizer
 optim_wrapper = dict(
@@ -61,8 +61,8 @@ param_scheduler = [
 ]
 
 # training schedule for 10k
-max_iters = 100000
-train_cfg = dict(type='IterBasedTrainLoop', max_iters=max_iters, val_interval=10000)
+max_iters = 50000
+train_cfg = dict(type='IterBasedTrainLoop', max_iters=max_iters, val_interval=5000)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 default_hooks = dict(
