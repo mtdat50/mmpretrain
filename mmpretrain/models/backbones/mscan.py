@@ -16,8 +16,7 @@ from mmengine.model.weight_init import (constant_init, normal_init,
 from mmengine.registry import HOOKS
 from mmengine.hooks import Hook
 
-from mmseg.registry import MODELS
-from mmseg.models.decode_heads.ham_head import Hamburger, CustomHamburger
+from mmpretrain.registry import MODELS
 
 
 class Mlp(BaseModule):
