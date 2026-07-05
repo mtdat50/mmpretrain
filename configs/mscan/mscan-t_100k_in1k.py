@@ -29,9 +29,6 @@ model = dict(
         loss=dict(type='CrossEntropyLoss', loss_weight=1.0),
         topk=(1, 5),
     ),
-    # model training and testing settings
-    train_cfg=dict(),
-    test_cfg=dict(mode='whole')
 )
 
 # dataset settings
