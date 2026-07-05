@@ -17,6 +17,7 @@ from mmengine.registry import HOOKS
 from mmengine.hooks import Hook
 
 from mmpretrain.registry import MODELS
+from mmseg.models.decode_heads.ham_head import Hamburger, CustomHamburger
 
 
 class Mlp(BaseModule):
