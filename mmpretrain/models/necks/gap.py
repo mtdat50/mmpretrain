@@ -42,4 +42,5 @@ class GlobalAveragePooling(nn.Module):
             outs = outs.view(inputs.size(0), -1)
         else:
             raise TypeError('neck inputs should be tuple or torch.tensor')
+        print("=== neck outs shape ===", outs.shape)
         return outs
