@@ -137,6 +137,7 @@ class KaggleImageNet(CustomDataset):
                         gt_label=label,
                     )
                 )
+        print(data_list)
 
         return data_list
 
@@ -185,6 +186,7 @@ class KaggleImageNet(CustomDataset):
                         gt_label=self.synset_to_idx[synset],
                     )
                 )
+        print(data_list)
 
         return data_list
 
