@@ -86,16 +86,19 @@ class KaggleImageNet(CustomDataset):
 
         train_root = os.path.join(self.data_root, "ILSVRC/Data/CLS-LOC/train")
 
+        print(f"=== train_root = {train_root}")
         synsets = sorted(
             p.name
             for p in os.listdir(train_root)
             if os.path.isdir(p)
         )
+        print(f"=== synsets = {synsets}")
 
         mapping = {
             synset: idx
             for idx, synset in enumerate(synsets)
         }
+        print(f"=== mapping = {mapping}")
 
         KaggleImageNet._CACHE[self.data_root] = {
             "synsets": synsets,
