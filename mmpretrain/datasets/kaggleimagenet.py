@@ -38,6 +38,7 @@ class KaggleImageNet(CustomDataset):
         split="train",
         **kwargs,
     ):
+        print("=== KaggleImageNet.__init__")
 
         assert split in ("train", "val")
 
@@ -55,7 +56,7 @@ class KaggleImageNet(CustomDataset):
     ####################################################################
 
     def load_data_list(self):
-
+        print("=== load_data_list")
         self._prepare_metadata()
 
         if self.split == "train":
@@ -68,6 +69,7 @@ class KaggleImageNet(CustomDataset):
     ####################################################################
 
     def _prepare_metadata(self):
+        print("=== _prepare_metadata")
 
         if self.data_root in KaggleImageNet._CACHE:
 
