@@ -88,20 +88,17 @@ class KaggleImageNet(CustomDataset):
 
         print(f"=== train_root = {train_root}")
         with os.scandir(train_root) as d:
-            for entry in d:
-                if entry.is_dir():
-                    print(f"=== {entry.name} is a directory")
-        for p in os.listdir(train_root):
-            print(p)
-            if os.path.isdir(p):
-                print(f"=== {p} is a directory")
-                p.name
+            synsets = sorted(
+                entry.name
+                for entry in d
+                if entry.is_dir()
+            )
 
-        synsets = sorted(
-            p.name
-            for p in os.listdir(train_root)
-            if os.path.isdir(p)
-        )
+        # synsets = sorted(
+        #     p.name
+        #     for p in os.listdir(train_root)
+        #     if os.path.isdir(p)
+        # )
         print(f"=== synsets = {synsets}")
 
         mapping = {
