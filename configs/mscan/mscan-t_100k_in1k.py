@@ -21,7 +21,7 @@ model = dict(
         attention_kernel_paddings=[2, [0, 3], [0, 5], [0, 10]],
         act_cfg=dict(type='GELU'),
         norm_cfg=dict(type='BN', requires_grad=True)),
-    neck=dict(type='GlobalAveragePooling'),
+    neck=dict(type='GlobalAveragePooling', dim=1),
     head=dict(
         type='LinearClsHead',
         num_classes=1000,
