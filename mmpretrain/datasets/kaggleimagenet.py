@@ -38,7 +38,6 @@ class KaggleImageNet(CustomDataset):
         split="train",
         **kwargs,
     ):
-        print("=== KaggleImageNet.__init__")
 
         assert split in ("train", "val")
 
@@ -56,7 +55,6 @@ class KaggleImageNet(CustomDataset):
     ####################################################################
 
     def load_data_list(self):
-        print("=== load_data_list")
         self._prepare_metadata()
 
         if self.split == "train":
@@ -69,7 +67,6 @@ class KaggleImageNet(CustomDataset):
     ####################################################################
 
     def _prepare_metadata(self):
-        print("=== _prepare_metadata")
 
         if self.data_root in KaggleImageNet._CACHE:
 
@@ -86,7 +83,6 @@ class KaggleImageNet(CustomDataset):
 
         train_root = os.path.join(self.data_root, "ILSVRC/Data/CLS-LOC/train")
 
-        print(f"=== train_root = {train_root}")
         with os.scandir(train_root) as d:
             synsets = sorted(
                 entry.name
@@ -94,18 +90,10 @@ class KaggleImageNet(CustomDataset):
                 if entry.is_dir()
             )
 
-        # synsets = sorted(
-        #     p.name
-        #     for p in os.listdir(train_root)
-        #     if os.path.isdir(p)
-        # )
-        print(f"=== synsets = {synsets}")
-
         mapping = {
             synset: idx
             for idx, synset in enumerate(synsets)
         }
-        print(f"=== mapping = {mapping}")
 
         KaggleImageNet._CACHE[self.data_root] = {
             "synsets": synsets,
@@ -154,32 +142,6 @@ class KaggleImageNet(CustomDataset):
                         gt_label=label,
                     )
                 )
-            print(data_list[:10])
-
-        return data_list
-
-        for synset in self.synsets:
-            print(f"=== Loading {synset} ...")
-
-            label = self.synset_to_idx[synset]
-            print(f"=== label = {label}")
-
-            cls_dir = os.path.join(train_root, synset)
-
-            for img in list_dir_or_file(
-                cls_dir,
-                recursive=False,
-                list_dir=False,
-                suffix=self.IMG_EXTENSIONS,
-            ):
-
-                data_list.append(
-                    dict(
-                        img_path=os.path.join(cls_dir, img),
-                        gt_label=label,
-                    )
-                )
-        print(data_list)
 
         return data_list
 
@@ -222,7 +184,6 @@ class KaggleImageNet(CustomDataset):
                         gt_label=self.synset_to_idx[synset],
                     )
                 )
-        print(data_list[:10])
 
         return data_list
 
@@ -237,13 +198,3 @@ class KaggleImageNet(CustomDataset):
             f"Split: {self.split}",
             f"Classes: {len(self.synsets)}",
         ]
-
-
-KaggleImageNet(
-    "/kaggle/input/competitions/imagenet-object-localization-challenge",
-    "train"
-)
-KaggleImageNet(
-    "/kaggle/input/competitions/imagenet-object-localization-challenge",
-    "val"
-)
