@@ -71,4 +71,4 @@ default_hooks = dict(
     param_scheduler=dict(type='ParamSchedulerHook'),
     checkpoint=dict(type='CheckpointHook', by_epoch=False, interval=max_iters),
     sampler_seed=dict(type='DistSamplerSeedHook'),
-    visualization=dict(type='SegVisualizationHook'))
+)
