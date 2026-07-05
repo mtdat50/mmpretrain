@@ -119,10 +119,12 @@ class KaggleImageNet(CustomDataset):
         data_list = []
 
         for synset in self.synsets:
+            print(f"=== Loading {synset} ...")
 
             label = self.synset_to_idx[synset]
+            print(f"=== label = {label}")
 
-            cls_dir = train_root / synset
+            cls_dir = os.path.join(train_root, synset)
 
             for img in list_dir_or_file(
                 cls_dir,
@@ -133,7 +135,7 @@ class KaggleImageNet(CustomDataset):
 
                 data_list.append(
                     dict(
-                        img_path=str(cls_dir / img),
+                        img_path=os.path.join(cls_dir, img),
                         gt_label=label,
                     )
                 )
@@ -182,7 +184,7 @@ class KaggleImageNet(CustomDataset):
 
                 data_list.append(
                     dict(
-                        img_path=str(val_root / image),
+                        img_path=os.path.join(val_root, image),
                         gt_label=self.synset_to_idx[synset],
                     )
                 )
