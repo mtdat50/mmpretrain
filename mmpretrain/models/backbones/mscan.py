@@ -1476,5 +1476,5 @@ class MSCANPretrain(BaseModule):
             outs.append(x)
 
         # return outs
-        return (outs,)
+        return (x,)
 
