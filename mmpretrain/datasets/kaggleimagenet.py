@@ -87,7 +87,7 @@ class KaggleImageNet(CustomDataset):
         synsets = sorted(
             p.name
             for p in os.listdir(train_root)
-            if p.is_dir()
+            if os.path.isdir(p)
         )
 
         mapping = {
