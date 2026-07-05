@@ -87,7 +87,7 @@ class KaggleImageNet(CustomDataset):
         train_root = os.path.join(self.data_root, "ILSVRC/Data/CLS-LOC/train")
 
         print(f"=== train_root = {train_root}")
-        with os.scandir('.') as d:
+        with os.scandir(train_root) as d:
             for entry in d:
                 if entry.is_dir():
                     print(f"=== {entry.name} is a directory")
