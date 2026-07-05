@@ -90,6 +90,8 @@ class ClsHead(BaseModule):
         else:
             target = torch.cat([i.gt_label for i in data_samples])
 
+        print("=== input shape:", cls_score.shape)
+        print("=== target shape:", target.shape)
         # compute loss
         losses = dict()
         loss = self.loss_module(
