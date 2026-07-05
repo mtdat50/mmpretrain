@@ -33,8 +33,11 @@ class GlobalAveragePooling(nn.Module):
         pass
 
     def forward(self, inputs):
-        # print("=== neck in shape ===", inputs.shape)
+        print("=== neck in shape ===", inputs[-1].shape)
         if isinstance(inputs, tuple):
+            for x in inputs:
+                assert isinstance(x, torch.Tensor), 'neck inputs should be tuple of torch.tensor'
+                print("=== x.shape ===", x.shape)
             outs = tuple([self.gap(x) for x in inputs])
             outs = tuple(
                 [out.view(x.size(0), -1) for out, x in zip(outs, inputs)])
@@ -43,5 +46,5 @@ class GlobalAveragePooling(nn.Module):
             outs = outs.view(inputs.size(0), -1)
         else:
             raise TypeError('neck inputs should be tuple or torch.tensor')
-        # print("=== neck outs shape ===", outs.shape)
+        print("=== neck outs shape ===", outs[-1].shape)
         return outs
